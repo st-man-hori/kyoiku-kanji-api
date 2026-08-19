@@ -24,33 +24,33 @@ const DEFAULT_LIMIT = MAX_LIMIT
 const gradeParam = z.coerce.number().int().min(1).max(6).optional().openapi({
   param: { name: 'grade', in: 'query' },
   example: 1,
-  description: '学年（1〜6）で絞り込み',
+  description: 'Filter by grade (1-6)',
 })
 
 const listRoute = createRoute({
   method: 'get',
   path: '/v1/kanji',
   tags: ['kanji'],
-  summary: '漢字の一覧を取得',
+  summary: 'List kanji',
   request: {
     query: z.object({
       grade: gradeParam,
-      strokeMin: z.coerce.number().int().optional().openapi({ description: '画数の下限' }),
-      strokeMax: z.coerce.number().int().optional().openapi({ description: '画数の上限' }),
-      q: z.string().optional().openapi({ description: '漢字・意味・読みの部分一致検索' }),
+      strokeMin: z.coerce.number().int().optional().openapi({ description: 'Minimum stroke count' }),
+      strokeMax: z.coerce.number().int().optional().openapi({ description: 'Maximum stroke count' }),
+      q: z.string().optional().openapi({ description: 'Partial match search across kanji, meaning, and readings' }),
       limit: z.coerce.number().int().min(1).max(MAX_LIMIT).optional().openapi({
-        description: `取得件数の上限（デフォルトは全件、最大${MAX_LIMIT}）`,
+        description: `Max number of results to return (defaults to all, max ${MAX_LIMIT})`,
       }),
-      offset: z.coerce.number().int().min(0).optional().openapi({ description: '取得開始位置' }),
+      offset: z.coerce.number().int().min(0).optional().openapi({ description: 'Offset for pagination' }),
     }),
   },
   responses: {
     200: {
-      description: '漢字の一覧',
+      description: 'List of kanji',
       content: { 'application/json': { schema: KanjiListSchema } },
     },
     429: {
-      description: 'リクエストが多すぎます',
+      description: 'Too many requests',
       content: { 'application/json': { schema: ErrorSchema } },
     },
   },
@@ -105,17 +105,17 @@ const randomRoute = createRoute({
   method: 'get',
   path: '/v1/kanji/random',
   tags: ['kanji'],
-  summary: 'ランダムな漢字を1字取得',
+  summary: 'Get a random kanji',
   request: {
     query: z.object({ grade: gradeParam }),
   },
   responses: {
     200: {
-      description: 'ランダムな漢字',
+      description: 'A random kanji',
       content: { 'application/json': { schema: KanjiSchema } },
     },
     404: {
-      description: '該当する漢字がない',
+      description: 'No matching kanji found',
       content: { 'application/json': { schema: ErrorSchema } },
     },
   },
@@ -140,10 +140,10 @@ const gradesRoute = createRoute({
   method: 'get',
   path: '/v1/grades',
   tags: ['grades'],
-  summary: '学年ごとの字数を取得',
+  summary: 'Get kanji count per grade',
   responses: {
     200: {
-      description: '学年ごとの字数',
+      description: 'Kanji count per grade',
       content: { 'application/json': { schema: GradesSchema } },
     },
   },
@@ -160,7 +160,7 @@ const detailRoute = createRoute({
   method: 'get',
   path: '/v1/kanji/{kanji}',
   tags: ['kanji'],
-  summary: '単字の詳細を取得',
+  summary: 'Get details for a single kanji',
   request: {
     params: z.object({
       kanji: z.string().openapi({ param: { name: 'kanji', in: 'path' }, example: '一' }),
@@ -168,11 +168,11 @@ const detailRoute = createRoute({
   },
   responses: {
     200: {
-      description: '漢字の詳細',
+      description: 'Kanji detail',
       content: { 'application/json': { schema: KanjiSchema } },
     },
     404: {
-      description: '該当する漢字がない',
+      description: 'No matching kanji found',
       content: { 'application/json': { schema: ErrorSchema } },
     },
   },
@@ -190,10 +190,10 @@ app.openapi(detailRoute, async (c) => {
 app.doc('/v1/openapi.json', {
   openapi: '3.0.0',
   info: {
-    title: '教育漢字 API',
+    title: 'Kyoiku Kanji API',
     version: '1.0.0',
     description:
-      '小学校で習う教育漢字1026字（読み・意味・画数・学年・例文）を提供するAPI。データは Kanji alive (https://app.kanjialive.com) を改変して使用（CC BY 4.0）。',
+      'An API providing all 1,026 kyōiku kanji (教育漢字) — the kanji taught in Japanese elementary school — including readings, meanings, stroke counts, grade level, and example words. Data adapted from Kanji alive (https://app.kanjialive.com), CC BY 4.0.',
   },
 })
 

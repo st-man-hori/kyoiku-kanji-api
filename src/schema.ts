@@ -25,7 +25,7 @@ export const KanjiSchema = z
           meaning: z.string().openapi({ example: 'first-year student' }),
         })
       )
-      .openapi({ description: '例文（単語と意味のペア）' }),
+      .openapi({ description: 'Example words (word and meaning pairs)' }),
   })
   .openapi('Kanji')
 
