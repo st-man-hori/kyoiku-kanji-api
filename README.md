@@ -1,3 +1,5 @@
+日本語 | [English](README.en.md)
+
 # 教育漢字 API(kyoiku-kanji-api)
 
 小学校で習う教育漢字1026字（読み・意味・画数・学年・例文）を提供するAPIです。Hono + Cloudflare Workers + D1。
