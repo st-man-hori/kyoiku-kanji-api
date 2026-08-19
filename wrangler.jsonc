@@ -2,5 +2,13 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "kyoiku-kanji-api",
   "compatibility_date": "2025-08-03",
-  "main": "./src/index.tsx"
+  "main": "./src/index.ts",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kyoiku-kanji-db",
+      "database_id": "21ed98be-b55c-4843-ae39-cfaea39ced90",
+      "migrations_dir": "migrations"
+    }
+  ]
 }

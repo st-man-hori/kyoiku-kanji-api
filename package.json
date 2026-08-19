@@ -3,6 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "db:migrate:local": "wrangler d1 migrations apply kyoiku-kanji-db --local",
+    "dev:docker": "docker run --rm -it -p 8787:8787 -v \"$(pwd)\":/app -w /app node:22-bookworm sh -c \"npx wrangler d1 migrations apply kyoiku-kanji-db --local && npx wrangler dev --port 8787 --ip 0.0.0.0\"",
     "build": "vite build",
     "preview": "$npm_execpath run build && vite preview",
     "deploy": "$npm_execpath run build && wrangler deploy",
