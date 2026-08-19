@@ -37,30 +37,19 @@ npm run cf-typegen
 
 ## API
 
-| Method | Path                | 説明                                                              |
-| ------ | ------------------- | ----------------------------------------------------------------- |
-| GET    | `/v1/kanji`         | 一覧。クエリ: `grade`, `strokeMin`, `strokeMax`, `q`, `limit`, `offset` |
-| GET    | `/v1/kanji/random`  | ランダムな1字。クエリ: `grade`                                      |
-| GET    | `/v1/kanji/:kanji`  | 単字の詳細（例: `/v1/kanji/一`）                                    |
-| GET    | `/v1/grades`        | 学年ごとの字数                                                     |
+詳細なリクエスト/レスポンス仕様はSwagger UIを参照してください。
 
-### レスポンス例
+- Swagger UI: `/v1/docs`
+- OpenAPI (JSON): `/v1/openapi.json`
 
-`GET /v1/kanji/一`
+| Method | Path               | 説明                     |
+| ------ | ------------------ | ------------------------ |
+| GET    | `/v1/kanji`        | 一覧・検索・絞り込み       |
+| GET    | `/v1/kanji/random` | ランダムな1字             |
+| GET    | `/v1/kanji/:kanji` | 単字の詳細（例: `/v1/kanji/一`） |
+| GET    | `/v1/grades`       | 学年ごとの字数             |
 
-```json
-{
-  "kanji": "一",
-  "strokeCount": 1,
-  "meaning": "one",
-  "grade": 1,
-  "kunyomi": { "ja": ["ひと"], "romaji": ["hito"] },
-  "onyomi": { "ja": ["イチ"], "romaji": ["ichi"] },
-  "examples": [
-    { "word": "一年生（いちねんせい）", "meaning": "first-year student" }
-  ]
-}
-```
+レスポンスはCORS対応、IPごとに60req/分のレート制限があります（超過時は`429`）。
 
 ## データ
 

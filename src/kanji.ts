@@ -1,3 +1,6 @@
+import type { z } from '@hono/zod-openapi'
+import type { KanjiSchema } from './schema'
+
 export type KanjiRow = {
   kanji: string
   stroke_count: number
@@ -10,15 +13,7 @@ export type KanjiRow = {
   examples: string
 }
 
-export type KanjiResponse = {
-  kanji: string
-  strokeCount: number
-  meaning: string
-  grade: number
-  kunyomi: { ja: string[]; romaji: string[] }
-  onyomi: { ja: string[]; romaji: string[] }
-  examples: { word: string; meaning: string }[]
-}
+export type KanjiResponse = z.infer<typeof KanjiSchema>
 
 function splitReadings(value: string | null, delimiter: string): string[] {
   if (!value) return []
