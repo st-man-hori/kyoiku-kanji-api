@@ -68,3 +68,7 @@ node scripts/generate-seed.mjs
 > This work by Kanji alive is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Permissions beyond the scope of this license may be available at http://kanjialive.com/credits/.
 
 Kanji alive のデータ（読み・意味・例文など）をもとに、教育漢字1026字向けに再構成・修正しています。
+
+## ライセンス
+
+コードは[MIT License](LICENSE)です。`data/kyoiku-kanji.csv`のデータは上記の通りCC BY 4.0のままです。

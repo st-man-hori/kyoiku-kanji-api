@@ -68,3 +68,7 @@ node scripts/generate-seed.mjs
 > This work by Kanji alive is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Permissions beyond the scope of this license may be available at http://kanjialive.com/credits/.
 
 The readings, meanings, example words, etc. are based on Kanji alive's data, restructured and modified for the 1,026 kyōiku kanji.
+
+## License
+
+The code is licensed under the [MIT License](LICENSE). The data in `data/kyoiku-kanji.csv` remains under CC BY 4.0 as noted above.
