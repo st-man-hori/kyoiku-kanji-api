@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.wrangler
+.wrangler/
+migrations/
+data/
+package-lock.json
+worker-configuration.d.ts

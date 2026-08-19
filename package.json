@@ -4,11 +4,14 @@
   "scripts": {
     "dev": "vite",
     "db:migrate:local": "wrangler d1 migrations apply kyoiku-kanji-db --local",
-    "dev:docker": "docker run --rm -it -p 8787:8787 -v \"$(pwd)\":/app -w /app node:22-bookworm sh -c \"npx wrangler d1 migrations apply kyoiku-kanji-db --local && npx wrangler dev --port 8787 --ip 0.0.0.0\"",
+    "dev:docker": "docker run --rm -it -p 8787:8787 -v \"$(pwd)\":/app -w /app -u \"$(id -u):$(id -g)\" -e HOME=/tmp node:22-bookworm sh -c \"npx wrangler d1 migrations apply kyoiku-kanji-db --local && npx wrangler dev --port 8787 --ip 0.0.0.0\"",
     "build": "vite build",
     "preview": "$npm_execpath run build && vite preview",
     "deploy": "$npm_execpath run build && wrangler deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.6.1",
@@ -18,7 +21,13 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.44.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "prettier": "^3.9.6",
     "vite": "^8.1.4",
     "wrangler": "^4.110.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,json,md}": "prettier --write"
   }
 }

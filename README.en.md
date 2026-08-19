@@ -2,7 +2,7 @@
 
 # Kyoiku Kanji API
 
-An API providing all 1,026 *kyōiku kanji* (教育漢字) — the kanji taught in Japanese elementary school — including readings, meanings, stroke counts, grade level, and example words. Built with Hono + Cloudflare Workers + D1.
+An API providing all 1,026 _kyōiku kanji_ (教育漢字) — the kanji taught in Japanese elementary school — including readings, meanings, stroke counts, grade level, and example words. Built with Hono + Cloudflare Workers + D1.
 
 ## Setup
 
@@ -44,12 +44,12 @@ See the Swagger UI for full request/response details.
 - Swagger UI: `/v1/docs`
 - OpenAPI (JSON): `/v1/openapi.json`
 
-| Method | Path               | Description                          |
-| ------ | ------------------ | ------------------------------------- |
-| GET    | `/v1/kanji`        | List / search / filter                |
-| GET    | `/v1/kanji/random` | A random kanji                        |
+| Method | Path               | Description                                     |
+| ------ | ------------------ | ----------------------------------------------- |
+| GET    | `/v1/kanji`        | List / search / filter                          |
+| GET    | `/v1/kanji/random` | A random kanji                                  |
 | GET    | `/v1/kanji/:kanji` | Detail for a single kanji (e.g. `/v1/kanji/一`) |
-| GET    | `/v1/grades`       | Kanji count per grade                 |
+| GET    | `/v1/grades`       | Kanji count per grade                           |
 
 Responses are CORS-enabled and rate-limited to 60 requests/minute per IP (`429` when exceeded).
 

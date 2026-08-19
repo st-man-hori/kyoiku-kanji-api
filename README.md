@@ -44,12 +44,12 @@ npm run cf-typegen
 - Swagger UI: `/v1/docs`
 - OpenAPI (JSON): `/v1/openapi.json`
 
-| Method | Path               | 説明                     |
-| ------ | ------------------ | ------------------------ |
-| GET    | `/v1/kanji`        | 一覧・検索・絞り込み       |
-| GET    | `/v1/kanji/random` | ランダムな1字             |
+| Method | Path               | 説明                             |
+| ------ | ------------------ | -------------------------------- |
+| GET    | `/v1/kanji`        | 一覧・検索・絞り込み             |
+| GET    | `/v1/kanji/random` | ランダムな1字                    |
 | GET    | `/v1/kanji/:kanji` | 単字の詳細（例: `/v1/kanji/一`） |
-| GET    | `/v1/grades`       | 学年ごとの字数             |
+| GET    | `/v1/grades`       | 学年ごとの字数                   |
 
 レスポンスはCORS対応、IPごとに60req/分のレート制限があります（超過時は`429`）。
 
