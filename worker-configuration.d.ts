@@ -1,5 +1,9 @@
+interface RateLimit {
+	limit(options: { key: string }): Promise<{ success: boolean }>;
+}
 interface __BaseEnv_CloudflareBindings {
 	DB: D1Database;
+	RATE_LIMITER: RateLimit;
 }
 declare namespace Cloudflare {
 	interface GlobalProps {

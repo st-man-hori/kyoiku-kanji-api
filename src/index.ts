@@ -6,6 +6,15 @@ const app = new Hono<{ Bindings: CloudflareBindings }>()
 
 app.use('/v1/*', cors())
 
+app.use('/v1/*', async (c, next) => {
+  const key = c.req.header('cf-connecting-ip') ?? 'unknown'
+  const { success } = await c.env.RATE_LIMITER.limit({ key })
+  if (!success) {
+    return c.json({ error: 'Too many requests' }, 429)
+  }
+  await next()
+})
+
 // 教育漢字は1026字で固定なので、limit未指定時は全件返す。
 const MAX_LIMIT = 2000
 const DEFAULT_LIMIT = MAX_LIMIT
