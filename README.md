@@ -4,6 +4,8 @@
 
 小学校で習う教育漢字1026字（読み・意味・画数・学年・例文）を提供するAPIです。Hono + Cloudflare Workers + D1。
 
+**本番URL: https://api.kyoiku-kanji.st-man.com/**
+
 ## セットアップ
 
 ```txt
@@ -41,8 +43,8 @@ npm run cf-typegen
 
 詳細なリクエスト/レスポンス仕様はSwagger UIを参照してください。
 
-- Swagger UI: `/v1/docs`
-- OpenAPI (JSON): `/v1/openapi.json`
+- Swagger UI: https://api.kyoiku-kanji.st-man.com/v1/docs
+- OpenAPI (JSON): https://api.kyoiku-kanji.st-man.com/v1/openapi.json
 
 | Method | Path               | 説明                             |
 | ------ | ------------------ | -------------------------------- |
