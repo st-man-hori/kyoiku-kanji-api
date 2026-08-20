@@ -4,6 +4,8 @@
 
 An API providing all 1,026 _kyōiku kanji_ (教育漢字) — the kanji taught in Japanese elementary school — including readings, meanings, stroke counts, grade level, and example words. Built with Hono + Cloudflare Workers + D1.
 
+**Production URL: https://api.kyoiku-kanji.st-man.com/**
+
 ## Setup
 
 ```txt
@@ -41,8 +43,8 @@ npm run cf-typegen
 
 See the Swagger UI for full request/response details.
 
-- Swagger UI: `/v1/docs`
-- OpenAPI (JSON): `/v1/openapi.json`
+- Swagger UI: https://api.kyoiku-kanji.st-man.com/v1/docs
+- OpenAPI (JSON): https://api.kyoiku-kanji.st-man.com/v1/openapi.json
 
 | Method | Path               | Description                                     |
 | ------ | ------------------ | ----------------------------------------------- |
