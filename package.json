@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "$npm_execpath run build && vite preview",
     "deploy": "$npm_execpath run build && wrangler deploy",
+    "versions:upload": "$npm_execpath run build && wrangler versions upload",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
