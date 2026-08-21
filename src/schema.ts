@@ -43,7 +43,7 @@ export const KanjiSchema = z
 export const KanjiListSchema = z
   .object({
     total: z.number().int().openapi({ example: 1026 }),
-    limit: z.number().int().openapi({ example: 2000 }),
+    limit: z.number().int().openapi({ example: 1026 }),
     offset: z.number().int().openapi({ example: 0 }),
     results: z.array(KanjiSchema),
   })

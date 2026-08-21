@@ -37,7 +37,7 @@ app.use("/v1/*", async (c, next) => {
 app.get("/", (c) => c.redirect("/v1/docs"));
 
 // 教育漢字は1026字で固定なので、limit未指定時は全件返す。
-const MAX_LIMIT = 2000;
+const MAX_LIMIT = 1026;
 const DEFAULT_LIMIT = MAX_LIMIT;
 
 // grade クエリパラメータは /v1/kanji と /v1/kanji/random の両方で使うので共通化している。
