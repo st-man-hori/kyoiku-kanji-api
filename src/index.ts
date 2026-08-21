@@ -57,9 +57,16 @@ const gradeParam = z.coerce
 
 // レート制限は /v1/* 全体に効くミドルウェア（下の app.use 参照）なので、
 // 429レスポンスは一覧に限らず全ルートのOpenAPI定義に載せる。
+// ErrorSchema のデフォルト例は "Not found" なので、429用に上書きする
+// （実際のレスポンスも "Too many requests"。app.use の429ハンドラ参照）。
 const tooManyRequestsResponse = {
   description: "Too many requests",
-  content: { "application/json": { schema: ErrorSchema } },
+  content: {
+    "application/json": {
+      schema: ErrorSchema,
+      example: { error: "Too many requests" },
+    },
+  },
 };
 
 // --- GET /v1/kanji（一覧） ---
