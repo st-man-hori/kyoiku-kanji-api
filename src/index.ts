@@ -55,6 +55,13 @@ const gradeParam = z.coerce
     description: "Filter by grade (1-6)",
   });
 
+// レート制限は /v1/* 全体に効くミドルウェア（下の app.use 参照）なので、
+// 429レスポンスは一覧に限らず全ルートのOpenAPI定義に載せる。
+const tooManyRequestsResponse = {
+  description: "Too many requests",
+  content: { "application/json": { schema: ErrorSchema } },
+};
+
 // --- GET /v1/kanji（一覧） ---
 // createRoute はハンドラを持たない「ルートの仕様」だけの定義。
 // request.query に書いたZodスキーマが、そのままリクエストのバリデーション兼、
@@ -104,10 +111,7 @@ const listRoute = createRoute({
       description: "List of kanji",
       content: { "application/json": { schema: KanjiListSchema } },
     },
-    429: {
-      description: "Too many requests",
-      content: { "application/json": { schema: ErrorSchema } },
-    },
+    429: tooManyRequestsResponse,
   },
 });
 
@@ -198,6 +202,7 @@ const randomRoute = createRoute({
       description: "No matching kanji found",
       content: { "application/json": { schema: ErrorSchema } },
     },
+    429: tooManyRequestsResponse,
   },
 });
 
@@ -230,6 +235,7 @@ const gradesRoute = createRoute({
       description: "Kanji count per grade",
       content: { "application/json": { schema: GradesSchema } },
     },
+    429: tooManyRequestsResponse,
   },
 });
 
@@ -264,6 +270,7 @@ const detailRoute = createRoute({
       description: "No matching kanji found",
       content: { "application/json": { schema: ErrorSchema } },
     },
+    429: tooManyRequestsResponse,
   },
 });
 
